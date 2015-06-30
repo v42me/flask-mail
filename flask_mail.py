@@ -25,12 +25,14 @@ from email.encoders import encode_base64
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 from email.header import Header
 from email.utils import formatdate, formataddr, make_msgid, parseaddr
 from contextlib import contextmanager
 
 from flask import current_app
-
+from_email= ""
+FROM_EMAIL= ""
 PY3 = sys.version_info[0] == 3
 
 PY34 = PY3 and sys.version_info[1] >= 4
@@ -118,6 +120,8 @@ def sanitize_address(addr, encoding='utf-8'):
             addr = '@'.join([localpart, domain])
         else:
             addr = Header(addr, encoding).encode()
+    if addr == from_email:
+        return formataddr((str(Header(FROM_EMAIL, 'utf-8')),addr))
     return formataddr((nm, addr))
 
 
