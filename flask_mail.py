@@ -11,7 +11,7 @@
 
 from __future__ import with_statement
 
-__version__ = '0.9.1'
+__version__ = '0.9.2'
 
 import re
 import blinker
@@ -31,8 +31,8 @@ from email.utils import formatdate, formataddr, make_msgid, parseaddr
 from contextlib import contextmanager
 
 from flask import current_app
-from_email= ""
-FROM_EMAIL= ""
+from_email= ""#mail name
+FROM_EMAIL= ""#display name
 PY3 = sys.version_info[0] == 3
 
 PY34 = PY3 and sys.version_info[1] >= 4
